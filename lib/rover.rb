@@ -1,8 +1,9 @@
 class Rover
-  attr_reader :x, :y, :direction
+  attr_reader :coordinate, :direction
 
   def initialize x, y, direction
-    @x, @y, @direction  = x, y, direction
+    @coordinate = [x, y]
+    @direction = direction
   end
 
   def move instructions
@@ -19,16 +20,10 @@ class Rover
   end
 
   def move_forward
-    case @direction.class.to_s
-    when "North"
-      @y += 1
-    when "South"
-      @y -= 1
-    when "West"
-      @x -= 1
-    when "East"
-      @x += 1
+    [0, 1].each do |index|
+      @coordinate[index] += @direction.go_ahead[index]
     end
+    
   end
 
   def move_left
