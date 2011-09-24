@@ -19,41 +19,23 @@ class Rover
   end
 
   def move_forward
-    case @direction
-    when "N"
+    case @direction.class.to_s
+    when "North"
       @y += 1
-    when "S"
+    when "South"
       @y -= 1
-    when "W"
+    when "West"
       @x -= 1
-    when "E"
+    when "East"
       @x += 1
     end
   end
 
   def move_left
-    case @direction
-    when "N"
-      @direction = "W"
-    when "W"
-      @direction = "S"
-    when "S"
-      @direction = "E"
-    when "E"
-      @direction = "N"
-    end
+    @direction = @direction.turn_left
   end
 
   def move_right
-    case @direction
-    when "N"
-      @direction = "E"
-    when "E"
-      @direction = "S"
-    when "S"
-      @direction = "W"
-    when "W"
-      @direction = "N"
-    end
+    @direction = @direction.turn_right
   end
 end
